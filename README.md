@@ -6,6 +6,6 @@
 
 **_Run the IntegerRep.html file from your system, in either firefox or chrome_** .
 
-IntegerRep.html implements the .swf file present in the link. 
+**IntegerRep.html implements the .swf file present in the link. **
 
-Technologies used: Javascript , HTML , CSS. 
+**Technologies used: Javascript , HTML , CSS. **

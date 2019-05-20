@@ -1,6 +1,4 @@
-
 var row1,row2;
-var dat='';
 const n = 16;
 
 for (let r=0;r<n;r++){

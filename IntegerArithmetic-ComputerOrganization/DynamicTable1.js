@@ -39,10 +39,6 @@ var rowover = "<tr id ='overflow' style='display: none'> <td></td><td></td><td><
 $("#binary5bit").append(rowover);
 
 var prev= null;
-const getRow = (elem) => {
-  getRow2(prev,elem);
-  prev=elem;
-}
 
 const getRow2 = (prev,ele) => {
   for(let i=1;i<=n;i++){
@@ -58,6 +54,11 @@ const getRow2 = (prev,ele) => {
     row1=document.getElementById(prev.id);
   }
   row2=document.getElementById(ele.id);
+}
+
+const getRow = (elem) => {
+  getRow2(prev,elem);
+  prev=elem;
 }
 
 const add5bitBinary = () => {

@@ -16,7 +16,7 @@ for (let r=0;r<n;r++){
   var two=r;
   var one=r;
   var sig=r;
-  if(r==0){
+  if(r===0){
     bin='0';
   }
   if(x>8){

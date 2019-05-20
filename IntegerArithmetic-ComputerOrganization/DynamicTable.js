@@ -16,14 +16,18 @@ for (let r=0;r<n;r++){
   var two=r;
   var one=r;
   var sig=r;
-  if(r==0)
+  if(r==0){
     bin='0';
-  if(x>8)
+  }
+  if(x>8){
     two=r-16;
-  if(x>8)
+  }
+  if(x>8){
     one=r-15;
-  if(r>=8)
+  }
+  if(r>=8){
     sig=8-r;
+  }
   col+='<td>'+x+'</td>';
   col+='<td>'+bin+'</td>';
   col+= '<td>'+two+'</td>';
@@ -37,12 +41,12 @@ var rowover = "<tr id ='overflow' style='display: none'> <td></td><td></td><td><
 $("#binary4bit").append(rowover);
 
 var prev= null;
-const getRow = (elem) =>{
+const getRow = (elem) => {
   getRow2(prev,elem);
   prev=elem;
 }
 
-const getRow2 = (prev,ele) =>{
+const getRow2 = (prev,ele) => {
   for(let i=1;i<=n;i++){
     document.getElementById(i).style.background = 'white';
     for(let j=1;j<=5;j++){
@@ -57,7 +61,7 @@ const getRow2 = (prev,ele) =>{
   row2=document.getElementById(ele.id);
 }
 
-const addBinary = () =>{
+const addBinary = () => {
   var flag1=flag2=flag3=flag4=flag5=0;
   var bin=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
   var unsig=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
@@ -117,31 +121,31 @@ var table = document.getElementById("table");
     }
 }
 var retrieve=document.getElementById("overflow");
-if(flag1==0)
+if(flag1===0)
 {
 document.getElementById("overflow").style.display = '';
 document.getElementById("overflow").cells[1].innerHTML="4BitOverflow";  
 document.getElementById("overflow").cells[1].style.background="#64E986";
 }
-if(flag2==0)
+if(flag2===0)
 {
 document.getElementById("overflow").style.display= '';
 document.getElementById("overflow").cells[2].innerHTML="2s-OverFlow";  
 document.getElementById("overflow").cells[2].style.background="#64E986";
 }
-if(flag3==0)
+if(flag3===0)
 {
 document.getElementById("overflow").style.display='';
 document.getElementById("overflow").cells[3].innerHTML="1s-OverFlow";  
 document.getElementById("overflow").cells[3].style.background="#64E986";
 }
-if(flag4==0)
+if(flag4===0)
 {
 document.getElementById("overflow").style.display='';
 document.getElementById("overflow").cells[4].innerHTML="Overflow!";  
 document.getElementById("overflow").cells[4].style.background="#64E986";
 }
-if(flag5==0)
+if(flag5===0)
 {
 document.getElementById("overflow").style.display='';
 retrieve.cells[5].innerHTML="Overflow!";  

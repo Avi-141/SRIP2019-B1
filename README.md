@@ -9,3 +9,6 @@
 **IntegerRep.html implements the .swf file present in the link**
 
 **Technologies used: Javascript , HTML , CSS**
+
+
+**Link to wiki page for a report and user documentation** [Wiki](https://github.com/Avi-141/SRIP2019-B1/wiki)

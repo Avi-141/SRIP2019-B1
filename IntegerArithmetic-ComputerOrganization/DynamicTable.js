@@ -45,7 +45,7 @@ const getRow = (elem) =>{
 const getRow2 = (prev,ele) =>{
   for(let i=1;i<=n;i++){
     document.getElementById(i).style.background = 'white';
-    for(j=1;j<=5;j++){
+    for(let j=1;j<=5;j++){
       document.getElementById(i).cells[j].style.background='';
     }
   }

@@ -86,8 +86,6 @@ const add5bitBinary = () => {
   document.getElementById("Unsi").value=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
   document.getElementById("Sig").value=Number(row1.cells[5].innerHTML)+Number(row2.cells[5].innerHTML);
 
-var table = document.getElementById("table");
-  
   var table = document.getElementById("table");
   for (var i = 1, rows1; rows1 = table.rows[i]; i++) {
    if(rows1.cells[1].innerHTML===res){

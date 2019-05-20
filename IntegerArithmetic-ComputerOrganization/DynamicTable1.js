@@ -61,7 +61,7 @@ const getRow2 = (prev,ele) => {
 }
 
 const add5bitBinary = () => {
-  var flag1=flag2=flag3=flag4=flag5=0;
+    var flag1=0,flag2=0,flag3=0,flag4=0,flag5=0;
   var bin=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
     var unsig=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
   console.log(unsig);

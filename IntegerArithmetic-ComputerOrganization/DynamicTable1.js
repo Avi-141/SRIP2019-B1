@@ -125,7 +125,7 @@ var retrieve=document.getElementById("overflow");
 if(flag1===0)
 {
 document.getElementById("overflow").style.display = '';
-document.getElementById("overflow").cells[1].innerHTML="4BitOverflow";  
+document.getElementById("overflow").cells[1].innerHTML="5BitOverflow";  
 document.getElementById("overflow").cells[1].style.background="#64E986";
 }
 if(flag2===0)

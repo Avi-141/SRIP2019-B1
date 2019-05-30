@@ -1,0 +1,31 @@
+[
+  {
+    question: "Representing 1.414 in a fixed point register with 2 bits for the integer part and 3 bits for the fractional part gives a round off error of most nearly",
+    choices: [-0.08579 ,0.0392 ,0.1642 ,0.2892],
+    correctAnswer: 1
+  }, 
+  {
+    question: "For a numerically controlled machine, integers need to be stored in a memory location.The minimum number of bits needed for an integer word to represent all integers between 0 and 1024 are",
+    choices: [8, 10,11,13],
+    correctAnswer: 2
+  }, 
+  {
+    question: "An engineer working for DOD is writing a program that transfers non-negative real numbers to integer format.  To avoid overflow problems, the maximum non-negative integer that can be represented in a 5-bit integer word is",
+    choices: [16, 64, 47, 31 ],
+    correctAnswer: 3
+  },
+  {question:"What is the answer when we multiply two binary numbers 11011 x 101",
+    choices: [10000111, 1000111, 10011101, 11100011],
+    correctAnswer: 0
+  },
+  {
+    question: "Let us look at binary division of two unsigned numbers 10111 / 10 =  ,where the number after - stands for remainder",
+    choices: [1001-1, 1011-0, 1011-1, 1001-0],
+    correctAnswer: 2
+  },
+  {
+    question: "11101 + 1010 =?",
+    choices : [100111,100110,110011,11101],
+    correctAnswer: 1
+  }
+];

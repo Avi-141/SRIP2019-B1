@@ -10,7 +10,7 @@ function genQuest(qsid, AID, status) {
     var prdiv = document.createElement("div");
     var forqs = document.createElement("div");
     var br = document.createElement("BR");
-    forqs.id = qsid;     
+    forqs.id = qsid;    
     forqs.className = "question";
     prdiv.appendChild(forqs);
     prdiv.appendChild(br);
@@ -33,7 +33,7 @@ function genQuest(qsid, AID, status) {
     }
 
     ScrollpageDiv.appendChild(prdiv);
-    if (status != 0 && status!=TotsPresent) {
+    if (status !== 0 && status!==TotsPresent) {
         var br = document.createElement("BR");
         var hr = document.createElement("HR");
         ScrollpageDiv.insertBefore(br, prdiv);
@@ -63,7 +63,7 @@ function ResWindowDispl(RID, status) {
     }
 
     ScrollpageDiv.appendChild(prdiv);
-    if (status != 0 && status!=TotsPresent) {
+    if (status !== 0 && status!==TotsPresent) {
         var br = document.createElement("BR");
         var hr = document.createElement("HR");
         ScrollpageDiv.insertBefore(br, prdiv);
@@ -95,26 +95,26 @@ function putResult() {
         var ResultStatus = "Correct Answer : ";
         document.getElementById(TempRID).innerHTML = qsjson[RandomNumbers[i]].ques;
         document.getElementById(ID_ans).innerHTML = ResultStatus + qsjson[RandomNumbers[i]].answer;
-        if (AnsweredStack[i] === -1) {
+        if (AnsweredStack[i] ==== -1) {
             document.getElementById(UserID_ans).innerHTML = "Question Not answered";
             document.getElementById(UserID_ans).style.color = "black";
         }
         else {
             var t1;
             var t2;
-            if (AnsweredStack[i] === 1) {
+            if (AnsweredStack[i] ==== 1) {
                 t1 = document.getElementById(qsidcurr.concat("1")).innerHTML;
                 t2 = qsjson[RandomNumbers[i]].answer;
             }
-            else if (AnsweredStack[i] === 2) {
+            else if (AnsweredStack[i] ==== 2) {
                 t1 = document.getElementById(qsidcurr.concat("2")).innerHTML;
                 t2 = qsjson[RandomNumbers[i]].answer;
             }
-            else if (AnsweredStack[i] === 3) {
+            else if (AnsweredStack[i] ==== 3) {
                 t1 = document.getElementById(qsidcurr.concat("3")).innerHTML;
                 t2 = qsjson[RandomNumbers[i]].answer;
             }
-            if (t1 !== t2) {
+            if (t1 !==== t2) {
                 ResultStatus = "You chose Incorrect!"+":";
                 //ResultStatus.style.color="red";
             document.getElementById(UserID_ans).style.color = "red";
@@ -137,6 +137,14 @@ function removeChildren() {
         rDiv.removeChild(rDiv.firstChild);
     }
 }
+function putQuestion() {
+    var qsid = "Q";
+    for (var i = 0; i < TotsPresent; i++) {
+        var qsidcurr = qsid.concat((i + 1).toString());
+        getContent(qsidcurr);
+    }
+}
+
 function newsetgen() {
     document.getElementById("Titles").innerHTML = "Quiz for Integer Arithmetic";
     document.getElementById("result").style.display = "none";
@@ -148,6 +156,18 @@ function newsetgen() {
     putQuestion();
     document.getElementById("qbody").style.display = "block";
 }
+function submitAnswers() {
+    var AID = "A";
+    var qsid = "Q";
+    for (var i = 0; i < TotsPresent; i++) {
+        var TempAID = AID.concat((i + 1).toString());
+        var JsonId = RandomNumbers[i];  
+        var qsidcurr = qsid.concat((i + 1).toString());
+        var userAns = checkAnswer(TempAID, JsonId, qsidcurr);
+        AnsweredStack.push(userAns);
+    }
+}
+
 
 function endgame(){
     document.getElementById("btsb").style.display = "none";
@@ -157,7 +177,7 @@ function endgame(){
     document.getElementById("result").innerHTML = "You have score "+(CorrectCount).toString() + " out of " + TotsPresent;
     putResult();
     document.getElementById("Titles").innerHTML = "Your results are here!";
-    // if(((CorrectCount).toString())===TotsPresent)
+    // if(((CorrectCount).toString())====TotsPresent)
       //  alert("All correct, Good JOB");
     document.getElementById("result").style.display = "block";
     document.getElementById("ShowRes").style.display = "block";
@@ -170,7 +190,7 @@ function endgame(){
 function generateRandomIndex() {
     var x = Math.floor((Math.random() * 10) + 0);
     var temp = RandomNumbers.indexOf(x);
-    while (temp != -1 && ArrayEmpty === 0) {
+    while (temp !== -1 && ArrayEmpty ==== 0) {
         x = Math.floor((Math.random() * 10) + 0);
         temp = RandomNumbers.indexOf(x);
     }
@@ -187,7 +207,7 @@ function getContent(qsidcurr) {
 
         var x = Math.floor((Math.random() * 3) + 1);
         var temp = StoreRandom.indexOf(x);
-        while (temp != -1) 
+        while (temp !== -1) 
         {
             x = Math.floor((Math.random() * 3) + 1);
             temp = StoreRandom.indexOf(x);
@@ -201,31 +221,31 @@ function getContent(qsidcurr) {
     document.getElementById(qsidcurr.concat((StoreRandom[2]).toString())).innerHTML = qsjson[RandomIndex].choice3;
 }
 
-function putQuestion() {
+/*function putQuestion() {
     var qsid = "Q";
     for (var i = 0; i < TotsPresent; i++) {
         var qsidcurr = qsid.concat((i + 1).toString());
         getContent(qsidcurr);
     }
-}
+}*/
 
 function checkAnswer(ID_ans, JsonId, qsid) {
     var userAns = -1;
     if (document.getElementById(ID_ans.concat("1")).checked) {
         userAns = 1;
-        if (document.getElementById(qsid.concat("1")).innerHTML == qsjson[JsonId].answer) {
+        if (document.getElementById(qsid.concat("1")).innerHTML === qsjson[JsonId].answer) {
             CorrectCount = CorrectCount + 1;
         }
     }
     if (document.getElementById(ID_ans.concat("2")).checked) {
         userAns = 2;
-        if (document.getElementById(qsid.concat("2")).innerHTML == qsjson[JsonId].answer) {
+        if (document.getElementById(qsid.concat("2")).innerHTML === qsjson[JsonId].answer) {
             CorrectCount = CorrectCount + 1;
         }
     }
     if (document.getElementById(ID_ans.concat("3")).checked) {
         userAns = 3;
-        if (document.getElementById(qsid.concat("3")).innerHTML == qsjson[JsonId].answer) {
+        if (document.getElementById(qsid.concat("3")).innerHTML === qsjson[JsonId].answer) {
             CorrectCount = CorrectCount + 1;
         }
     }
@@ -233,7 +253,7 @@ function checkAnswer(ID_ans, JsonId, qsid) {
 }
 var showpercent;
 
-function submitAnswers() {
+/*function submitAnswers() {
     var AID = "A";
     var qsid = "Q";
     for (var i = 0; i < TotsPresent; i++) {
@@ -243,4 +263,4 @@ function submitAnswers() {
         var userAns = checkAnswer(TempAID, JsonId, qsidcurr);
         AnsweredStack.push(userAns);
     }
-}
+}*/

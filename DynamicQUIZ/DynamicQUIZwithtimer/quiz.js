@@ -149,6 +149,18 @@ function begin() {
     document.getElementById("qbody").style.display = "block";
 }
 
+function submitAnswers() {
+    var AnsID = "A";
+    var QID = "Q";
+    for (var i = 0; i < TotsPresent; i++) {
+        var TempAnsID = AnsID.concat((i + 1).toString());
+        var JsonId = RandomNumbers[i];    //contains the questions index
+        var QIDcurr = QID.concat((i + 1).toString());
+        var userAns = checkAnswer(TempAnsID, JsonId, QIDcurr);
+        AnsweredStack.push(userAns);
+    }
+}
+
 function endgame(){
     document.getElementById("btsb").style.display = "none";
     document.getElementById("bts").style.visibility = "visible";
@@ -232,7 +244,7 @@ function checkAnswer(AnsId, JsonId, QId) {
     return userAns;
 }
 
-function submitAnswers() {
+/*function submitAnswers() {
     var AnsID = "A";
     var QID = "Q";
     for (var i = 0; i < TotsPresent; i++) {
@@ -243,3 +255,4 @@ function submitAnswers() {
         AnsweredStack.push(userAns);
     }
 }
+*/

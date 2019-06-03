@@ -1,6 +1,6 @@
 var AnsweredStack = [];
 var RandomNumbers = [];
-var ArrayEmpty = 1;
+var EmptyTemp = 1;
 var CorrectCount = 0;
 var TotsPresent = 0;
 
@@ -159,6 +159,7 @@ function submitAnswers() {
         var userAns = checkAnswer(TempAnsID, JsonId, QIDcurr);
         AnsweredStack.push(userAns);
     }
+   return;
 }
 
 function endgame(){
@@ -166,7 +167,7 @@ function endgame(){
     document.getElementById("bts").style.visibility = "visible";
     submitAnswers();
     document.getElementById("qbody").style.display = "none";
-    document.getElementById("result").innerHTML = "You have score "+(CorrectCount).toString() + " out of " + TotsPresent;
+    document.getElementById("result").innerHTML = "You have scored "+(CorrectCount).toString() + " out of " + TotsPresent;
     ResToShow();
     document.getElementById("Titles").innerHTML = "Your results are here!";
     // if(((CorrectCount).toString())===TotsPresent)
@@ -174,7 +175,7 @@ function endgame(){
     document.getElementById("result").style.display = "block";
     document.getElementById("ShowRes").style.display = "block";
     CorrectCount = 0;
-    ArrayEmpty = 1;
+    EmptyTemp = 1;
     AnsweredStack = [];
     RandomNumbers = [];
 }
@@ -182,12 +183,12 @@ function endgame(){
 function generateRandomIndex() {
     var x = Math.floor((Math.random() * 10) + 0);
     var temp = RandomNumbers.indexOf(x);
-    while (temp != -1 && ArrayEmpty === 0) {
+    while (temp != -1 && EmptyTemp === 0) {
         x = Math.floor((Math.random() * 10) + 0);
         temp = RandomNumbers.indexOf(x);
     }
     RandomNumbers.push(x);
-    ArrayEmpty = 0;
+    EmptyTemp = 0;
     return x;
 }
 
@@ -219,6 +220,7 @@ function GenQs() {
         var QIDcurr = QID.concat((i + 1).toString());
         getContent(QIDcurr);
     }
+   return;
 }
 
 function checkAnswer(AnsId, JsonId, QId) {
@@ -243,16 +245,3 @@ function checkAnswer(AnsId, JsonId, QId) {
     }
     return userAns;
 }
-
-/*function submitAnswers() {
-    var AnsID = "A";
-    var QID = "Q";
-    for (var i = 0; i < TotsPresent; i++) {
-        var TempAnsID = AnsID.concat((i + 1).toString());
-        var JsonId = RandomNumbers[i];    //contains the questions index
-        var QIDcurr = QID.concat((i + 1).toString());
-        var userAns = checkAnswer(TempAnsID, JsonId, QIDcurr);
-        AnsweredStack.push(userAns);
-    }
-}
-*/

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" type="text/css" href="IntegerStyle.css">
+        <meta charset="UTF-8">
+        <title>Javascript</title>
+    </head>
+
+    <body style="padding:25px 50px">
+        <h1><center>INTEGER ARITHMETIC</center></h1>
+<table rules="all" frame="box" align="right" id="table" border="3" class="display" cellspacing="0" cellpadding="0">
+    <thead>
+            <tr>
+                <th colspan="2">Binary rep</th>
+                <th>2's Complement</th>
+                <th>1's Complement</th>
+                <th>Unsigned</th>
+                <th>Signed</th>
+            </tr>
+    </thead>
+    <tbody id='binary4bit'>
+         </tbody>
+    </table>
+<button value="Refresh Page" onClick="window.location.reload();" class="button refresh">Reset</button>
+<button value="Add Binary" onClick="addBinary();" class="button add">AddBinary</button>
+<a href="IntegerRep2.html" target="_parent"><button value="Switch5Bit" class="button S5">Switchto5Bit!</button></a>
+<br><br>
+<a href="UserManual.html" target="_parent"><button value="UserInstr" class="button UI">Help</button></a>
+<br><br><br><br><br><br><br><br>
+<p><strong><left>Results will be displayed below</left></strong></p>
+<form id="myForm">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Binary Rep: &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Binrep" id="Binrep" class="field left" readonly> <label id="over"></label><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2's Comp :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="2s" id="2s" align="center" class="field left" readonly><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1's Comp: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="1s" id="1s" align="center" class="field left" readonly><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unsigned  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Unsi" id="Unsi" align="center" class="field left" readonly><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Signed   : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Sig" id="Sig" align="center" class="field left" readonly><br><br>
+<label id="over"></label>
+</form>
+<script type="text/javascript" src="libraries.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
+<script type="text/javascript" src="DynamicTable.js"></script>
+</body>
+</html>
+
+

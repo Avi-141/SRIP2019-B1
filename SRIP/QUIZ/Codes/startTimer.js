@@ -22,7 +22,7 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var threeMinutes = 60 * 3,
+    var threeMinutes = 60 * 3.5,
         display = document.querySelector('#time');
     startTimer(threeMinutes, display);
 };

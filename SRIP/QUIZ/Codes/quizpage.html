@@ -3,11 +3,14 @@
 
 <head>
     <title>Quiz</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <link rel="stylesheet" type="text/css" href="quiz.css">
     <script type="text/javascript" src="quiz.js"></script>
-   <!--  <script type="text/javascript" src="newset.js"></script>-->
+   <script type="text/javascript" src="newset.js"></script>
     <script type="text/javascript" src="flashcardquiz.js"></script>
     <script type="text/javascript" src="startTimer.js"></script>
     <!-- <script type="text/javascript">
@@ -40,10 +43,12 @@ getElementById("newset").disabled=true;
 }
     </script>-->
 
-
     <div id="qhead" class="paged">
         <div class="contains">
             <h2 id="Titles">Quiz for Integer Arithmetic</h2>
+            <h3><center>Instructions!</center></h3>
+            <h4><center>New question set can be generated only once, timer will not be reset</center></h3>
+            <!--<h5><center>If you try to generate a new question set more than once, you will be disqualified and the page will crash</center></h5>-->
               <p><center>Quiz expires in<center><span id="time"></span>&nbsp;&nbsp;&nbsp;&nbsp;minutes!</p>
             <div id="result" class="hide"></div>
         </div>
@@ -54,7 +59,7 @@ getElementById("newset").disabled=true;
         </div>
         <div id="btsb" style="display: none;">
                 <button type="button" class="btstyle" onclick="endgame()">Submit</button>
-                <button class="btstyle"  id="newset" type="button" onclick="begin()">Generate New Question set</button>
+                <button class="btstyle" type="button" onclick="newsetgen()">Generate New Question set(only once)</button>
         </div>
     </div>
     <br>

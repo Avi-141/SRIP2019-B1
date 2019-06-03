@@ -72,7 +72,7 @@ function ResWindowDispl(RID, status) {
 }
 function CreateForms() {
     TotsPresent = Math.floor((Math.random() * 4) + 3);
-    var QId = "Q";
+    var QId = "QS";
     var AnsID = "A";
     var RId = "R";
     for (var i = 0; i < TotsPresent; i++) {
@@ -86,7 +86,7 @@ function CreateForms() {
 
 function ResToShow() {
     var RID = "R";
-    var QID = "Q";
+    var QID = "QS";
     for (var i = 0; i < TotsPresent; i++) {
         var QIDcurr = QID.concat((i + 1).toString());    
         var TempRID = RID.concat((i + 1).toString());  
@@ -96,7 +96,7 @@ function ResToShow() {
         document.getElementById(TempRID).innerHTML = qsjson[RandomNumbers[i]].ques;
         document.getElementById(AnsID).innerHTML = Decision + qsjson[RandomNumbers[i]].answer;
         if (AnsweredStack[i] === -1) {
-            document.getElementById(UserAnsID).innerHTML = "Question Not answered";
+            document.getElementById(UserAnsID).innerHTML = "Question Skipped by you :(";
             document.getElementById(UserAnsID).style.color = "black";
         }
         else {
@@ -151,7 +151,7 @@ function begin() {
 
 function submitAnswers() {
     var AnsID = "A";
-    var QID = "Q";
+    var QID = "QS";
     for (var i = 0; i < TotsPresent; i++) {
         var TempAnsID = AnsID.concat((i + 1).toString());
         var JsonId = RandomNumbers[i];    //contains the questions index
@@ -215,7 +215,7 @@ function getContent(QIDcurr) {
 }
 
 function GenQs() {
-    var QID = "Q";
+    var QID = "QS";
     for (var i = 0; i < TotsPresent; i++) {
         var QIDcurr = QID.concat((i + 1).toString());
         getContent(QIDcurr);

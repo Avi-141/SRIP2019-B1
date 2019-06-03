@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <link rel="stylesheet" type="text/css" href="quiz.css">
+    <script type="text/javascript" src="quiz.js"></script>
+     <script type="text/javascript" src="newset.js"></script>
+    <script type="text/javascript" src="flashcardquiz.js"></script>
+    <script type="text/javascript" src="startTimer.js"></script>
+</head>
+
+<body>
+    <div>Quiz expires in<span id="time"></span> minutes!</div>
+ <!--<script type="text/javascript">
+/*        window.onbeforeunload = function () {
+            var inputs = document.getElementsByTagName("INPUT");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type == "button" || inputs[i].type == "submit") {
+                    inputs[i].disabled = true;
+                }
+            }
+        };*/
+    </script>-->
+
+
+    <div id="qhead" class="paged">
+        <div class="contains">
+            <h2 id="Titles">Quiz for Integer Arithmetic</h2>
+            <div id="result" class="hide"></div>
+        </div>
+        <div id="bts">
+                <button type="button" class="btstyle" onclick="begin()">Begin</button>
+                <button value="Refresh Page" class="btstyle" onClick="window.location.reload();">Refesh Page</button>
+        </div>
+        <div id="btsb" style="display: none;">
+                <button type="button" class="btstyle" onclick="endgame()">Submit</button>
+                 <button type="button" class="btstyle" onClick="newsetgen();">Generate New Question set</button>
+        </div>
+    </div>
+    <br>
+    <div style="width: 50%; height:30em; padding-left: 25%; overflow: auto; ">
+
+        <div id="qbody" class="hide"></div>
+
+        <div id="ShowRes" class="hide"> </div>
+        </br>
+
+    </div>
+    
+</body>
+
+</html>

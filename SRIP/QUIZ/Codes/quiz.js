@@ -4,8 +4,43 @@ var EmptyTemp = 1;
 var CorrectCount = 0;
 var TotsPresent = 0;
 
+var qsjson = [];
 
-function genQuest(QID, AnsID, status) {
+function thisref(question, choice1, choice2, choice3, ans) {
+    this.ques = question;
+    this.choice1 = choice1;
+    this.choice2 = choice2;
+    this.choice3 = choice3;
+    this.answer = ans;
+}
+function start() {
+    initJson();
+}
+function initJson() {
+    $.ajax(
+        {
+            type:"GET",
+            url: "flashcardquiz.json",
+            data: "",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            cache: false,
+            success: function (data) 
+            {
+
+                $(data.stuff).each(function (a, b) 
+                {
+                    var obj = new thisref(b.ques, b.choice1, b.choice2, b.choice3, b.answer);
+                    qsjson.push(obj);
+                });
+            }
+
+        }
+    );
+}
+
+
+function genQuest(QID, AnsID, currstate) {
     var ScrollpageDiv = document.getElementById("qbody");
     var prdiv = document.createElement("div");
     var forqs = document.createElement("div");
@@ -33,7 +68,7 @@ function genQuest(QID, AnsID, status) {
     }
 
     ScrollpageDiv.appendChild(prdiv);
-    if (status != 0 && status!=TotsPresent) {
+    if (currstate !==0 && currstate!==TotsPresent) {
         var br = document.createElement("BR");
         var hr = document.createElement("HR");
         ScrollpageDiv.insertBefore(br, prdiv);
@@ -41,12 +76,12 @@ function genQuest(QID, AnsID, status) {
     }
 
 }
-function ResWindowDispl(RID, status) {
+function ResWindowDispl(RID, currstate) {
     var ScrollpageDiv = document.getElementById("ShowRes");
     var prdiv = document.createElement("div");
     var forqs = document.createElement("div");
     var br = document.createElement("BR");
-    forqs.id = RID;       //R1
+    forqs.id = RID;     
     forqs.className = "question";
     prdiv.appendChild(forqs);
     prdiv.appendChild(br);
@@ -63,7 +98,7 @@ function ResWindowDispl(RID, status) {
     }
 
     ScrollpageDiv.appendChild(prdiv);
-    if (status != 0 && status!=TotsPresent) {
+    if (currstate !==0 && currstate!==TotsPresent) {
         var br = document.createElement("BR");
         var hr = document.createElement("HR");
         ScrollpageDiv.insertBefore(br, prdiv);
@@ -71,7 +106,10 @@ function ResWindowDispl(RID, status) {
     }
 }
 function CreateForms() {
-    TotsPresent = Math.floor((Math.random() * 4) + 3);
+   // var tots = document.getElementById("questionCount").value;
+   /// tots= parseInt(tots);
+   // if (tots > 3 && tots < qsjson.length) {
+    TotsPresent = Math.floor((Math.random() * 3) + 4);
     var QId = "QS";
     var AnsID = "A";
     var RId = "R";
@@ -82,8 +120,10 @@ function CreateForms() {
         genQuest(Qstring, Astring, i);
         ResWindowDispl(Rstring, i);
     }
+   //return 1;
 }
-
+//else return 0;
+//}
 function ResToShow() {
     var RID = "R";
     var QID = "QS";
@@ -145,23 +185,15 @@ function begin() {
     document.getElementById("btsb").style.display = "block";
     removeChildren();
     CreateForms();
+    /*if(currstate==0)
+    {
+        alert("You have to answer atleast 4 questions out of a max possible " + qsjson.length +" questions ");
+    }
+    else
+    {*/
     GenQs();
     document.getElementById("qbody").style.display = "block";
 }
-
-function submitAnswers() {
-    var AnsID = "A";
-    var QID = "QS";
-    for (var i = 0; i < TotsPresent; i++) {
-        var TempAnsID = AnsID.concat((i + 1).toString());
-        var JsonId = RandomNumbers[i];    //contains the questions index
-        var QIDcurr = QID.concat((i + 1).toString());
-        var userAns = checkAnswer(TempAnsID, JsonId, QIDcurr);
-        AnsweredStack.push(userAns);
-    }
-   return;
-}
-
 function endgame(){
     document.getElementById("btsb").style.display = "none";
     document.getElementById("bts").style.visibility = "visible";
@@ -183,7 +215,7 @@ function endgame(){
 function generateRandomIndex() {
     var x = Math.floor((Math.random() * 10) + 0);
     var temp = RandomNumbers.indexOf(x);
-    while (temp != -1 && EmptyTemp === 0) {
+    while (temp !==-1 && EmptyTemp === 0) {
         x = Math.floor((Math.random() * 10) + 0);
         temp = RandomNumbers.indexOf(x);
     }
@@ -200,7 +232,7 @@ function getContent(QIDcurr) {
 
         var x = Math.floor((Math.random() * 3) + 1);
         var temp = StoreRandom.indexOf(x);
-        while (temp != -1) 
+        while (temp !==-1) 
         {
             x = Math.floor((Math.random() * 3) + 1);
             temp = StoreRandom.indexOf(x);
@@ -245,3 +277,44 @@ function checkAnswer(AnsId, JsonId, QId) {
     }
     return userAns;
 }
+function submitAnswers() {
+    var AnsID = "A";
+    var QID = "QS";
+    for (var i = 0; i < TotsPresent; i++) {
+        var TempAnsID = AnsID.concat((i + 1).toString());
+        var JsonId = RandomNumbers[i]; 
+        var QIDcurr = QID.concat((i + 1).toString());
+        var userAns = checkAnswer(TempAnsID, JsonId, QIDcurr);
+        AnsweredStack.push(userAns);
+    }
+}
+
+
+function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds; 
+
+        if (diff <= 0) {
+            start = Date.now() + 1000;
+        }
+    };
+    timer();
+    setInterval(timer, 1000);
+}
+
+window.onload = function () {
+    var threeMinutes = 60 * 3.5,
+        display = document.querySelector('#time');
+    startTimer(threeMinutes, display);
+};

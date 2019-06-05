@@ -61,11 +61,33 @@ h2{
 .btstyle{
      user-select: none;
      -moz-user-select: none; 
-    background-color:#FFE4E1;
+    background-color:#FFD700;
     border: 2px #FA8072;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
+    margin-top: 10px;
+    margin-left: 50%;
+}
+.ttstyle{
+     user-select: none;
+     -moz-user-select: none;
+     background-color: #FFB6C1;
+    border: 2px #FA8072;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 50%;
+}
+.textf{
+     user-select: none;
+     -moz-user-select: none;
+     background-color: #FF6347;
+    border: 2px #FA8072;
+    padding: 15px 32px;
+    text-align:left;
+    font-size: 14px;
     margin-top: 10px;
     margin-left: 50%;
 }

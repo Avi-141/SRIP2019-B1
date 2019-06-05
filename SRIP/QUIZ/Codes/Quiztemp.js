@@ -26,6 +26,7 @@ function initJson() {
             dataType: 'json',
             type: 'get',
             cache: false,
+            async: true,
             success: function (data) 
             {
 

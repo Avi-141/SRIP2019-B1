@@ -1,4 +1,5 @@
-var qsjson = [
+var qsjson=
+[
     {
         "ques" : "Representing 1.414 in a fixed point register with 2 bits for the integer part and 3 bits for the fractional part\n\ngives a round off error of most nearly",
         "choice1" : "0.08579",

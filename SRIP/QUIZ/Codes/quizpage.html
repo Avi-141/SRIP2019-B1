@@ -3,17 +3,18 @@
 
 <head>
     <title>Quiz</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+   <!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Expires" content="0" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <link rel="stylesheet" type="text/css" href="quiz.css">
+     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>-->
     <script type="text/javascript" src="quiz.js"></script>
-   <script type="text/javascript" src="newset.js"></script>
+   <!--<script type="text/javascript" src="newset.js"></script>-->
     <script type="text/javascript" src="flashcardquiz.js"></script>
-    <script type="text/javascript" src="startTimer.js"></script>
+     <script type="text/javascript" src="startTimer.js"></script>
     <!-- <script type="text/javascript">
+
      window.onbeforeunload = function () {
             var inputs = document.getElementsByTagName("INPUT");
             for (var i = 0; i < inputs.length; i++) {
@@ -26,7 +27,6 @@
     </script>-->
 
 </head>
-
 <body>
 	  <!--         <script> 
                    var btn=document.getElementById("newset");
@@ -55,11 +55,12 @@ getElementById("newset").disabled=true;
         <div id="bts">
 
                 <button type="button" class="btstyle" onclick="begin()">Begin</button>
+               <!-- <input type="number" id="questionCount">-->
                 <button value="Refresh Page" class="btstyle" onClick="window.location.reload();">Refesh Page</button>
         </div>
         <div id="btsb" style="display: none;">
                 <button type="button" class="btstyle" onclick="endgame()">Submit</button>
-                <button class="btstyle" type="button" onclick="newsetgen()">Generate New Question set(only once)</button>
+                <!--<button class="btstyle" type="button" onclick="newsetgen()">Generate New Question set(only once)</button>-->
         </div>
     </div>
     <br>

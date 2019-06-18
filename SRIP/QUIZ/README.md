@@ -1,4 +1,4 @@
-# PROJECT 2 -Dynamic quiz using JSON and JS**
+# PROJECT 2 -Dynamic quiz using JSON and JS
 
 **Issue no: [Issue228](https://github.com/virtual-labs/computer-organization-iiith/issues/228)**
 

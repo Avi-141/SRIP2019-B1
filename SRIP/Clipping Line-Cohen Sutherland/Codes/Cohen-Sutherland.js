@@ -1,15 +1,25 @@
-$('.equipCatValidation').on('keydown keyup', function(e){
-    if ($(this).val() > 600
-        && e.keyCode !== 46 // keycode for delete
-        && e.keyCode !== 8 // keycode for backspace
-       ) {
-       e.preventDefault();
-       $(this).val(600);
-    }
-});
+
 //var canvas=document.getElementById("canvas");
 var context = canvas.getContext("2d");
 context.globalCompositeOperation = 'source-over';
+
+
+
+/*for(let var i=0;i<=600;i=i+200)
+{
+	
+	context.moveTo(i,0);
+	context.lineTo(i,600);
+	context.stroke();
+}
+
+for(let var j=0;j<=600;j=j+200)
+{
+	
+	context.moveTo(0,j);
+	context.lineTo(600,j);
+	context.stroke();
+}*/
 
 
 var INSIDE = 0; // 0000 
@@ -134,16 +144,18 @@ function clip(end_points)
 					{
 						var intersections = find_intersection(o1, end_points,xmin,ymin,xmax,ymax);
 						console.log("Intersections for o1 are : " + intersections[0]);
-						highlightline(end_,intersections[0]);
+
+						//delete_line(end_,intersections[0]);
 						delete_line(start_, intersections[0]);
-						//highlightline(end_,intersections1[0]);
+						highlightline(end_,intersections[0]);
 					}
 					else if(o2 != '0000')
 					{
 						var intersections1 = find_intersection(o2, end_points,xmin,ymin,xmax,ymax);
 						console.log("Intersections for o2 are : " + intersections1[0]);
 						highlightline(start_,intersections1[0]);
-                        delete_line(end_, intersections1[0]);
+                        delete_line(intersections1[0],end_);
+                        //delete_line(start_,end_);
 						//highlightline(end_,intersections[0]);
 
 					}
@@ -156,7 +168,8 @@ function clip(end_points)
 					var intersections1 = find_intersection(o2, end_points,xmin,ymin,xmax,ymax);
 					console.log("Intersections of start point : " + intersections[0]);
 					console.log("Intersections of end point : " + intersections1[0]);
-					highlightline(intersections[0],intersections1[0]);
+
+					//highlightline(intersections[0]);
 					delete_line(start_, intersections[0]);
 					delete_line(end_,intersections1[0]);
 				}
@@ -355,8 +368,8 @@ function handleMouseOut(e) {
 
 function handleMouseMove(e) {
     mouseX = parseInt(e.clientX - offsetX);
-    mouseY = parseInt(e.clientY-110);
-    $("#movelog").html("Coordinates will be displayed as X/Y: " + mouseX + " / " + mouseY);
+    mouseY = parseInt(e.clientY-offsetX);
+    $("#movelog").html(" X Coordinate will be displayed as X: " + mouseX);
 
     // Put your mousemove stuff here
 
@@ -377,3 +390,16 @@ $("#canvas").mouseup(function (e) {
 $("#canvas").mouseout(function (e) {
     handleMouseOut(e);
 });*/
+
+
+
+
+$('.equipCatValidation').on('keydown keyup', function(e){
+    if ($(this).val() > 600
+        && e.keyCode !== 46 // keycode for delete
+        && e.keyCode !== 8 // keycode for backspace
+       ) {
+       e.preventDefault();
+       $(this).val(600);
+    }
+});

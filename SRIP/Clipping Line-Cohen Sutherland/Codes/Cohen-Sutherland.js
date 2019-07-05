@@ -21,7 +21,7 @@ for(let var j=0;j<=600;j=j+200)
 	context.stroke();
 }*/
 
-
+var factor=50;
 var INSIDE = 0; // 0000 
 var LEFT = 1;   // 0001 
 var RIGHT = 2;  // 0010 
@@ -68,6 +68,10 @@ var TOP = 8;    // 1000
 		    function init_line()
 		    {
 		    	draw_line(ox1,oy1,ox2,oy2)
+		    }
+		    function grid()
+		    {
+		    	drawGrid();
 		    }
 			canvas.addEventListener('click', function(evt)
 			{
@@ -290,7 +294,7 @@ function draw_line(oxx1,oyy1,oxx2,oyy2)
 
 	      	context.clearRect(0,0,600,600);
 	        context.strokeStyle = 'black' ;
-	        context.lineWidth = 2;
+	        context.lineWidth = 2.75;
 			context.beginPath();
 			context.moveTo(ax, ay);
 			context.lineTo(bx, by);
@@ -334,6 +338,88 @@ function decbin(dec,length){
     out += (dec >> length ) & 1;    
   return out;  
 }
+
+function drawGrid()
+{
+
+	/*var leftMargin =0;
+
+	var bottomMargin =610;
+
+	var align=(factor/2)-5;
+
+	context.beginPath();
+
+	for(i=0; i<=600; i++)
+
+	{
+
+		if(i<600)
+
+		{
+
+			context.fillStyle = "white";
+
+			context.font="15px Arial";
+
+			context.fillText(i,leftMargin+i*factor+align,bottomMargin+15)
+
+		}
+
+		context.moveTo(leftMargin+i*factor,bottomMargin);
+
+		context.lineTo(leftMargin+i*factor,bottomMargin-600*factor);
+
+	}
+
+	for(i=0; i<=600; i++)
+
+	{
+
+		if(i<600)
+
+		{
+
+			context.fillStyle = "white";
+
+			context.font="15px Arial";
+
+			context.fillText(i,leftMargin-15,bottomMargin-i*factor-align)
+
+		}
+
+		context.moveTo(leftMargin,bottomMargin-i*factor);
+
+		context.lineTo(leftMargin+600*factor,bottomMargin-i*factor);
+
+	}
+
+	context.lineWidth = 1;
+
+	context.strokeStyle = 'white';
+
+	context.stroke();*/
+context.lineWidth = 0.75;
+for(let i=0;i<=600;i=i+200)
+{
+
+	
+	context.moveTo(i,0);
+	context.lineTo(i,600);
+	context.strokeStyle='gold';
+	context.stroke();
+}
+
+for(let j=0;j<=600;j=j+200)
+{
+	
+	context.moveTo(0,j);
+	context.lineTo(600,j);
+	context.strokeStyle='gold';
+    context.stroke();
+}
+}
+
 
 
 

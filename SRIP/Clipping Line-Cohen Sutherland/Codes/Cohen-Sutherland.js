@@ -253,7 +253,7 @@ function find_intersection(outcode, end_points,xmin,ymin,xmax,ymax){
 
 				//Keeps track of all intersections
 				//We use a list because if the outcode contains 2 '1's, we need to calculate 2 intersections
-				intersections_list = []
+				intersections_list = [];
 				//To temporarily store an intersection point
 				intersect=[0, 0];
 				var minv=(x2-x1)/(y2-y1);
@@ -269,6 +269,8 @@ function find_intersection(outcode, end_points,xmin,ymin,xmax,ymax){
 				{
 					if(outcode.charAt(0)=='1')
 					{
+						p2.style.color='red'
+					    p2.innerHTML="Clipped w.r.t BOTTOM";
 						 intersect[0] = parseInt(x1)+parseInt((ymax - y1)*minv); 
                          intersect[1] = parseInt(ymax);  
 					     intersections_list.push(intersect);
@@ -276,6 +278,8 @@ function find_intersection(outcode, end_points,xmin,ymin,xmax,ymax){
 					}
 					else if(outcode.charAt(1)=='1')
 					{
+						p3.style.color='tomato'
+					     p3.innerHTML="Clipped w.r.t TOP";
 						  intersect[0] = parseInt(x1) +parseInt((ymin - y1)*minv); 
                           intersect[1] = parseInt(ymin); 
 						  intersections_list.push(intersect)
@@ -298,6 +302,7 @@ function find_intersection(outcode, end_points,xmin,ymin,xmax,ymax){
 			        context.moveTo(ax,cy);
 			        context.lineTo(cx, cy);
 			        context.stroke();	
+			        return intersections_list;
 						
 
 				}
@@ -313,6 +318,7 @@ function find_intersection(outcode, end_points,xmin,ymin,xmax,ymax){
 			        context.moveTo(ax, ay);
 			        context.lineTo(cx, ay);
 			        context.stroke();	
+			        return intersections_list;
 				}
 
 				 if(outcode.charAt(2) == '1')// RIGHT
@@ -326,6 +332,7 @@ function find_intersection(outcode, end_points,xmin,ymin,xmax,ymax){
 			        context.moveTo(cx, ay);
 			        context.lineTo(cx, cy);
 			        context.stroke();	
+			        return intersections_list;
 				}
 
 				if(outcode.charAt(3) == '1') // LEFT
@@ -338,16 +345,18 @@ function find_intersection(outcode, end_points,xmin,ymin,xmax,ymax){
 					context.beginPath();
 			        context.moveTo(ax, ay);
 			        context.lineTo(ax, cy);
-			        context.stroke();	
+			        context.stroke();
+			        return intersections_list;	
+
 				}
 
-				return intersections_list;
+				//return intersections_list;
 			}
 		}
 
 function draw_line(oxx1,oyy1,oxx2,oyy2){
 
-			  start = [oxx1,oyy1]; // get from html text field
+			    start = [oxx1,oyy1]; // get from html text field
 				end = [oxx2, oyy2];
 
 				stack.push([start, end]);

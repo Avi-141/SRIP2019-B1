@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/> 
+	<title>Assignment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="stylepage.css">
+	<script type="text/javascript" src="ARMsimulator.js"></script>
+	<script type="text/javascript" src="execute.js"></script>
+	<script type="text/javascript" src="Libraries/FileSaver.js"></script>
+</head>
+
+<body onload="fileonload(1)" style="background-color:ghostwhite">
+
+	
+	<div class="dropdown top_menu">
+
+		<span class="hoverdropdown">
+			<button  class="dropbtn" id="file"><b> File </b></button>
+			<div id="myDropdown_file" class="dropdown-content">
+				<button class="bts" onclick="myfunctionlist('','')">New</button><br>
+				<button class="bts"  onclick="openFile(dispFile)" id="contents">Open</button>
+				<!--<pre id="contents"></pre>-->
+				<input type="file" id="inp_file" style="display: none" onchange="setinputfileintextarea()"><br>
+				<button class="bts" onclick="close_fun()">Close</button><br>
+				<button class="bts" onclick="closeAll_fun()">Close All</button>
+				<hr>
+				<button class="bts" onclick="save_function()">Save</button><br>
+				<button class="bts" onclick="saveAs_function()">Save As</button>
+				<hr>
+				<button class="bts" onclick="exit_Window()">Exit</button><br>
+			</div>
+
+		</span>
+
+
+
+		<span class="hoverdropdown">
+			<button  class="dropbtn" id="edit"><b> Edit </b></button>
+			<div id="myDropdown_edit" class="dropdown-content" style="margin-left:4em; ">
+				<button class="bts" onclick="undo_fun()">Undo</button><br>
+				<button class="bts" >Redo</button>
+				<hr>
+				<button class="bts" onclick="cut()">Cut</button><br>
+				<button class="bts" onclick="copy()">Copy</button><br>
+				<button class="bts" onclick="paste()">Paste</button>
+				<hr>
+				<button class="bts" onclick="selectAll()">Select All</button><br>
+			</div>
+		</span>
+
+
+
+		<span class="hoverdropdown"> 
+			<button  class="dropbtn" id="run"><b> Run </b></button>
+			<div id="myDropdown_run" class="dropdown-content" style="margin-left:8em; ">
+				<button class="bts" id="Run_assemble" onclick="assemblerlistner()">Assemble</button><br>
+				<div class="assemblerclass">
+					<button class="bts" id="Run_run" style="cursor: none;opacity: 0.5">Run</button><br>
+					<button class="bts" id="Run_step" style="cursor: none;opacity: 0.5">Step</button><br>
+					<button class="bts" id="Run_reset" style="cursor: none;opacity: 0.5">Reset</button>
+					<hr>
+					<button class="bts" id="Run_clearBreakPoints" style="cursor: none;opacity: 0.5">Clear
+						Breakpoints</button><br>
+					<button class="bts" id="Run_toggleBreakPoints" style="cursor: none;opacity: 0.5">Toggle
+						Breakpoints</button><br>
+				</div>
+
+			</div>
+		</span>
+
+
+		<span class="hoverdropdown">
+			<button  class="dropbtn" id="help"><b>Help</b></button>
+			<div id="myDropdown_help" class="dropdown-content" style="margin-left:12em; ">
+				<a href="help.htm" class="link_decor" style="border:none;background-color: #f1f1f1;">Help</a>
+				<hr>
+				<button onclick="about_popup()" class="bts">About</button>
+
+				<div id="my-modal" class="modal" style="background-color: white">
+					<div class="modal-content" style="background-color: white">
+						<div class="modal-header" style="background-color: rgb(141, 141, 141);">
+							<span class="close">&times;</span>
+						Developer information
+						</div>
+						<div class="modal_wrapper" style="background-color: white">
+							<div>
+									<img src="Images/inf.png">
+							</div>
+							<div class="modal-body">
+								 <p>ArmSimulator Version 1.0 Build 100</p>
+                                <p>Designed By-</p>
+                                <p>Avi Solanki</p>
+                                <p>Email:avi27.999@gmail.com</p><br>
+                                <p>ArmSimulator is a ARM assembler and a run time simulator</p>
+							</div>
+							<div class="modal-footer" style="background-color: white;">
+								<button class="close_btn">OK</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</span>
+
+
+
+
+
+
+
+	</div>
+	<br>
+	<hr>
+
+
+
+	<div class="menu">
+
+		<a href="index.htm" id="menu_editor" class="link_decor">Editor</a>
+		<a href="execute.html" id="menu_execute" class="link_decor">Execute</a>
+		<a href="codes.htm" id="menu_codes" class="link_decor">Sample Codes</a>
+		<a href="help.htm" id="menu_help" class="link_decor">Help</a>
+	</div>
+
+
+
+	<hr>
+	<div style="display: inline-block; overflow-x: scroll;" id="mydiv">
+
+	</div>
+	<div style="width: 100%;height:20em;">
+		<textarea style="width: 100%;height:100%;" oninput="textareachanged(1)" id="mytext">
+
+	</textarea>
+
+	</div>
+
+	<br>
+
+	
+	<div class="bottom_menu">
+		<button id="bottom_Run">Run Input/Output</button>
+		<button id="bottom_parser">Simulator Message</button>
+		<div class="wrapper">
+			<div style="background-color: grey">
+				<button id="bottom_clear" class="center_feild">Clear Field</button>
+			</div>
+			<div style="width:98%;height:10em;">
+				<textarea style="width: 100%;height:100%;" id="parsertext">
+
+			</textarea>
+			</div>
+		</div>
+		<br>
+	</div>
+	
+</body>
+
+</html>

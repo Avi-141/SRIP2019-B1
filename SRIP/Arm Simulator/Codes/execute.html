@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/> 
+    <title>Assignment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylepage.css">
+	<script type="text/javascript" src="ARMsimulator.js"></script>
+	<script type="text/javascript" src="execute.js"></script>
+	<script type="text/javascript" src="Libraries/FileSaver.js"></script>
+</head>
+
+<body onload="fileonload(0)" style="background-color:ghostwhite">
+
+    
+    <div class="dropdown top_menu">
+
+        <span class="hoverdropdown">
+            <button class="dropbtn" id="file"><b> File </b></button>
+            <div id="myDropdown_file" class="dropdown-content">
+                <button class="bts">New</button><br>
+                <button class="bts"  onclick="openFile(dispFile)" id="contents">Open</button><br>
+                <!--<pre id="contents"></pre>-->
+                <button class="bts">Close</button><br>
+                <button class="bts">Close All</button>
+                <hr>
+                <button class="bts" onclick="save_function();">Save</button><br>
+                <button class="bts"  onclick="saveAs_function();">Save As</button>
+                <hr>
+                <button class="bts" onclick="exit_Window()">Exit</button><br>
+            </div>
+        </span>
+
+
+        <span class="hoverdropdown">
+            <button class="dropbtn" id="edit"><b> Edit </b></button>
+            <div id="myDropdown_edit" class="dropdown-content" style="margin-left:4em; ">
+                <button class="bts" onclick="undo_fun()">Undo</button><br>
+                <button class="bts" >Redo</button>
+                <hr>
+                <button class="bts" onclick="cut()">Cut</button><br>
+                <button class="bts" onclick="copy()">Copy</button><br>
+                <button class="bts" onclick="paste()">Paste</button>
+                <hr>
+                <button class="bts" onclick="selectAll()">Select All</button><br>
+            </div>
+        </span>
+
+
+
+
+        <span class="hoverdropdown">
+            <button class="dropbtn" id="run"><b> Run </b></button>
+            <div id="myDropdown_run" class="dropdown-content" style="margin-left:8em; ">
+                <button class="bts" id="Run_assemble" onclick="assemblerlistner()">Assemble</button><br>
+                <div class="assemblerclass">
+                    <button class="bts" id="Run_run" onclick="runExecute()"
+                        style="cursor: none;opacity: 0.5">Run</button><br>
+                    <button class="bts" id="Run_step" onclick="stepUtil()"
+                        style="cursor: none;opacity: 0.5">Step</button><br>
+                    <button class="bts" id="Run_reset" style="cursor: none;opacity: 0.5">Reset</button>
+                    <hr>
+                    <button class="bts" id="Run_clearBreakPoints" style="cursor: none;opacity: 0.5">Clear
+                        Breakpoints</button><br>
+                    <button class="bts" id="Run_toggleBreakPoints" style="cursor: none;opacity: 0.5">Toggle
+                        Breakpoints</button><br>
+                </div>
+
+            </div>
+        </span>
+
+        <span class="hoverdropdown">
+            <button class="dropbtn" id="help"><b>Help</b></button>
+            <div id="myDropdown_help" class="dropdown-content" style="margin-left:12em; ">
+                <a href="help.htm" class="link_decor" style="border:none;background-color: #f1f1f1;">Help</a>
+                <hr>
+                <button class="bts" onclick="about_popup()">About</button>
+                <div id="my-modal" class="modal" style="background-color: white">
+                    <div class="modal-content" style="background-color: white">
+                        <div class="modal-header" style="background-color: rgb(141, 141, 141);">
+                            <span class="close">&times;</span>
+                        Developer information
+                        </div>
+                        <div class="modal_wrapper" style="background-color: white">
+                            <div>
+                                    <img src="Images/inf.png">
+                            </div>
+                            <div class="modal-body">
+                                <p>ArmSimulator Version 1.0 Build 100</p>
+                                <p>Designed By-</p>
+                                <p>Avi Solanki</p>
+                                <p>Email:avi27.999@gmail.com</p><br>
+                                <p>ArmSimulator is a ARM assembler and a run time simulator</p>
+                            </div>
+                            <div class="modal-footer" style="background-color: white;">
+                                <button class="close_btn">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <br>
+    <hr>
+
+
+    </span>
+
+
+    <div class="menu">
+
+        <a href="index.htm" id="menu_editor" class="link_decor">Editor</a>
+        <a href="execute.html" id="menu_execute" class="link_decor">Execute</a>
+        <a href="codes.htm" id="menu_codes" class="link_decor">Sample Codes</a>
+        <a href="help.htm" id="menu_help" class="link_decor">Help</a>
+    </div>
+
+
+    <!--HEADER html is here**********************************************************************************-->
+
+    <hr>
+    <div class="wrapper_execute" style="width:100%;height:24em;">
+        <div class="box1" style="background-color:#f4f5f7;overflow-x:auto;">
+            <!-- java iced tea image-->
+            <img src="https://image.flaticon.com/icons/png/512/226/226777.png" alt="logo" width="15em" height="15em"
+                style="background-color: white;border: 1px solid black;">
+            Text Segment
+            <table id="text_table" style="background-color: white;width:100%;visibility: hidden;">
+                <tr>
+                    <th>Bkpt</th>
+                    <th>Address</th>
+                    <th>Source</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="box2">
+            <div style="position: relative;height: 100%;">
+                <button id="execute_step" onclick="stepUtil()" class="execute_btn"
+                    style="cursor: none; opacity: 0.5;">Step</button><br>
+                <button id="execute_run" onclick="runExecute()" class="execute_btn"
+                    style="cursor: none; opacity: 0.5;">Run</button>
+            </div>
+
+        </div>
+        <div class="box3" style="background-color: #f4f5f7;overflow-x:auto;">
+            <img src="https://image.flaticon.com/icons/png/512/226/226777.png" alt="logo" width="15em" height="15em"
+                style="background-color: white;border: 1px solid black;">
+            Registers
+            <table id="registor_table" style="width:100%;background-color: white">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>$r0</td>
+                    <td>0</td>
+                    <td id="$zero">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r1</td>
+                    <td>0</td>
+                    <td id="$at">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r2</td>
+                    <td>0</td>
+                    <td id="$v0">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r3</td>
+                    <td>0</td>
+                    <td id="$v1">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r4</td>
+                    <td>0</td>
+                    <td id="$a0">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r5</td>
+                    <td>0</td>
+                    <td id="$a1">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r6</td>
+                    <td>0</td>
+                    <td id="$a2">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r7</td>
+                    <td>0</td>
+                    <td id="$a3">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r8</td>
+                    <td>0</td>
+                    <td id="$t0">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r9</td>
+                    <td>0</td>
+                    <td id="$t1">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r10</td>
+                    <td>0</td>
+                    <td id="$t2">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r11</td>
+                    <td>0</td>
+                    <td id="$t3">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r12</td>
+                    <td>0</td>
+                    <td id="$t4">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r13</td>
+                    <td>0</td>
+                    <td id="$t5">0x10100000</td>
+                </tr>
+                <tr>
+                    <td>$r14</td>
+                    <td>0</td>
+                    <td id="$t6">0x0</td>
+                </tr>
+                <tr>
+                    <td>$r15</td>
+                    <td>0</td>
+                    <td id="$t7">0x4000000</td>
+                </tr>
+                <tr>
+                    <td>$r16</td>
+                    <td>0</td>
+                    <td id="$s0">0xffffffff</td>
+                </tr>
+            </table>
+        </div>
+        <div class="box4" style="background-color: #f4f5f7;overflow-y: scroll;">
+            <img src="https://image.flaticon.com/icons/png/512/226/226777.png" alt="logo" width="15em" height="15em"
+                style="background-color: white;border: 1px solid black;">
+            Data Segment
+            <table id="data_table" style="visibility:hidden;">
+                <tr>
+                    <th>Address</th>
+                    <th>Value(+0)</th>
+                    <th>Value(+4)</th>
+                    <th>Value(+8)</th>
+                    <th>Value(+16)</th>
+                    <th>Value(+20)</th>
+                </tr>
+                <tr>
+                    <td>0x10000000</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000018</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000030</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000048</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000060</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000078</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000090</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x100000a8</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x100000c0</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x100000d8</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x100000f0</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x100000108</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000000120</td>
+                    <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000000138</td>
+                     <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+                <tr>
+                    <td>0x10000000150</td>
+                     <td>0x0</td>
+                    <td>0x0</td>
+                   <td>0x0</td>
+                   <td>0x0</td>
+                    <td>0x0</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <br>
+    
+    <div class="bottom_menu">
+        <button id="bottom_Run">Run Input/Output</button>
+        <button id="bottom_parser">Simulator Message</button>
+        <div class="wrapper" style="border: 1px solid black">
+            <div style="background-color: grey">
+                <button id="bottom_clear" onclick="ClearParserText()" class="center_feild">Clear Field</button>
+            </div>
+            <div style="width:98%;max-height:9em;">
+                <textarea readonly style="width: 100%;height:95%;" id="parsertext">
+
+			</textarea>
+            </div>
+        </div>
+        <br>
+    </div>
+   
+</body>
+
+</html>

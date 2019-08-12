@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Quiz</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="quiz.css">
+   <!-- <script type="text/javascript" src="starTimer.js"></script>-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="quiz.js"></script>
+</head>
+<body onload="start();">
+<div>  <p><center>Quiz expires in<center><span id="time"></span>&nbsp;&nbsp;&nbsp;&nbsp;minutes!</p></center></center></p></div>
+   <div id="qhead" class="paged">
+        <div class="contains">
+            <h2 id="Titles">Quiz for Integer Arithmetic</h2>
+            <h3><center>Instructions!</center></h3>
+            <h4><center>Choose the Number of questions you want to answer</center></h3>
+    <div id="result" class="hide"></div>
+        </div>
+   <div id="bts">
+    <!--<input type="text" value="Number of questions?" class="textf" readonly>
+    <input type="number" value="4" id="questionCount" class="ttstyle"  min="4" oninput="this.value = Math.abs(this.value)"  max="10">-->
+    <button type="button" class="btstyle" onclick="begin()">Begin</button>
+    <button value="Refresh Page" class="btstyle" onClick="window.location.reload();">Refesh Page</button>
+        </div>
+        <div id="btsb" style="display: none;">
+                <button type="button" class="btstyle" onclick="endgame()">Submit</button>
+                <!--<button class="btstyle" type="button" onclick="newsetgen()">Generate New Question set(only once)</button>-->
+        </div>
+    </div>
+    <br>
+    <div style="width: 50%; height:30em; padding-left: 25%;">
+         <div id="qbody" class="hide"></div>
+        <div id="ShowRes" class="hide"> </div>
+        </br>
+   </div>
+</body>
+
+</html>

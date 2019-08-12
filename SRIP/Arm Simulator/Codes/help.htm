@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/> 
+	<title>Assignment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="stylepage.css">
+	<script type="text/javascript" src="ARMsimulator.js"></script>
+	<script type="text/javascript" src="execute.js"></script>
+
+</head>
+
+<body style="background-color:ghostwhite">
+	<div class="dropdown top_menu">
+
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="file"><b> File </b></button>
+			<div id="myDropdown_file" class="dropdown-content">
+				<button class="bts">New</button><br>
+				<button class="bts">Open</button><br>
+				<button class="bts">Close</button><br>
+				<button class="bts">Close All</button>
+				<hr>
+				<button class="bts">Save</button><br>
+				<button class="bts">Save As</button>
+				<hr>
+				<button class="bts" onclick="exit_Window()">Exit</button><br>
+			</div>
+		</span>
+
+
+
+
+
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="edit"><b> Edit </b></button>
+			<div id="myDropdown_edit" class="dropdown-content" style="margin-left:4em; ">
+				<button class="bts" onclick="undo_fun()">Undo</button><br>
+				<button class="bts">Redo</button>
+				<hr>
+				<button class="bts">Cut</button><br>
+				<button class="bts">Copy</button><br>
+				<button class="bts">Paste</button>
+				<hr>
+				<button class="bts">Select All</button><br>
+			</div>
+		</span>
+
+
+
+
+
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="run"><b> Run </b></button>
+			<div id="myDropdown_run" class="dropdown-content" style="margin-left:8em; ">
+				<button class="bts" id="Run_assemble" onclick="assemblerlistner()">Assemble</button><br>
+				<div class="assemblerclass">
+					<button class="bts" id="Run_run" style="cursor: none;opacity: 0.4">Run</button><br>
+					<button class="bts" id="Run_step" style="cursor: none;opacity: 0.3">Step</button><br>
+					<button class="bts" id="Run_reset" style="cursor: none;opacity: 0.6">Reset</button>
+					<hr>
+					<button class="bts" id="Run_clearBreakPoints" style="cursor: none;opacity: 0.5">Clear
+						Breakpoints</button><br>
+					<button class="bts" id="Run_toggleBreakPoints" style="cursor: none;opacity: 0.5">Toggle
+						Breakpoints</button><br>
+				</div>
+
+			</div>
+
+		</span>
+
+
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="help"><b>Help</b></button>
+			<div id="myDropdown_help" class="dropdown-content" style="margin-left:12em; ">
+				<a href="help.htm" class="link_decor" style="border:none;background-color: #f1f1f1;">Help</a>
+				<hr>
+				<button class="bts" onclick="about_popup()">About</button>
+				<div id="my-modal" class="modal" style="background-color: white">
+					<div class="modal-content" style="background-color: white">
+						<div class="modal-header" style="background-color: rgb(141, 141, 141);">
+							<span class="close">&times;</span>
+						Developer information
+						</div>
+						<div class="modal_wrapper" style="background-color: white">
+							<div>
+								<img src="Images/inf.png">
+							</div>
+							<div class="modal-body">
+								<p>ARMSimulator Version 1.0 Build 100</p>
+                                <p>Designed By-</p>
+                                <p>Avi Solanki</p>
+                                <p>Email:avi27.999@gmail.com</p><br>
+                                <p>ARMSimulator is a ARM assembler and a run time simulator</p>
+							</div>
+							<div class="modal-footer" style="background-color: white;">
+								<button class="close_btn">OK</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<br>
+	<hr>
+	</span>
+
+
+
+
+	<div class="menu">
+
+		<a href="index.htm" id="menu_editor" class="link_decor">Editor</a>
+		<a href="execute.html" id="menu_execute" class="link_decor">Execute</a>
+		<a href="codes.htm" id="menu_codes" class="link_decor">Sample Codes</a>
+		<a href="help.htm" id="menu_help" class="link_decor">Help</a>
+	</div>
+	<br>
+	<div class="scroll">
+		<p style="padding:15px">
+			<b><u>User's Guide</u></b><br><br>
+			<b>1.Introduction</b><br>
+			This simulator is designed to run ARM codes, programed in ARM assmebly language.<br><br>
+			<b>2.Layout</b><br>
+			At the top of the simulator there is a <b>MenuBar</b>. The Menubar provides following functionalities ..
+			<ul style="list-style-type:circle;">
+				<strong><li></strong>
+					File
+					<ul style="list-style-type:circle;">
+						<li>
+							Options for writing a new code; opening a file; closing or saving the current code etc
+						</li>
+						<li>
+							Exiting the Simulators
+						</li>
+					</ul>
+				</li>
+				<li>
+					Edit
+					<ul style="list-style-type:circle;">
+						<li>
+							Editor options like undo, redo, select all etc.
+						</li>
+					</ul>
+				</li>
+				<li>
+					Run
+					<ul style="list-style-type:circle;">
+						<li>
+							Assemble the code
+						</li>
+						<li>
+							Run the whole program
+						</li>
+						<li>
+							Run the current instruction of the program
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<br>
+			The main panel consistes of 4 tabs.
+			<ul style="list-style-type:circle;">
+				<li>
+					<b>Editor</b> : Here the user will write their programs. The editor can have multiple tabs of code section. In
+					each tab user can write their programs.
+				</li>
+				<li>
+					<b>Execute</b> : Assembling and running of the user code will be done here. It consists of various sections
+					like the register table, text section, memory table etc.
+
+				</li>
+				<li>
+					<b>Sample Codes</b> : Various sample ARM Programs are provided here for the user help.
+				</li>
+				<li>
+					<b>Help</b> : User guide to understand the simulator.
+				</li>
+			</ul>
+			<br>
+			The bottom I/O panel is to generate the assembler messages. Assembly errors, runtime errors, input/output messages
+			etc will be generated here.<br><br>
+			<b>3.Writing and Running a sample program</b><br>
+			<ul style="list-style-type:circle;">
+				<li>
+					To write a program, the first thing we have to do, is to open a new editor where we can write our program. To
+					do that ..<br><br>
+					<ol>
+						<li>
+							Click on the <b>File</b> button from the menu. A list will appear.
+						</li>
+						<li>
+							Click on the <b>New</b> button from the list. A new editor will appear in the editor tab. Here we will
+							write our program
+						</li>
+					</ol><br>
+				</li>
+				<li>
+					Next, we will write our code in the editor. We can either start from scratch and write the program or we can
+					copy the sample code, present in the sample codes tab, and modify it to our needs.
+				</li>
+				<li>
+					After writing our program, we will assemble it. To do that ..<br><br>
+					<ol>
+						<li>
+							Click on the <b>Run</b> buttion from the menu. A list will appear.
+						</li>
+						<li>
+							Click on the <b>Assemble</b> button from the list.
+						</li>
+					</ol><br>
+
+					This will assemble our ARM program and the control will be transfered from the editor window to the execute
+					window. If there are error(s) in our program, the subsequent messages will be displayed in the bottom I/O
+					panel.
+				</li>
+				<li>
+					After the program has been successfuly assebled, we can run it. We can either choose to run the whole program
+					in one shot, or we can run one instruction at a time. To do the, the execute panel has two buttons, <b>Run</b>
+					and <b>Step</b>
+				</li>
+			</ul>
+			<b>4.Supported Directives/Instructions</b><br>
+			The registers names are the same as defined in ARM.<br>
+			<ol>
+				<li>
+					In this version following directives are supported :
+					<ul style="list-style-type:circle;">
+						<li>
+							<b>.word</b> : To define a single variable or an array. If inital value(s) is not provided, no memory
+							space will be reserved and the variable name will be an alias to the previously defined variable.
+						</li>
+						<li>
+							<b>.space</b> :To allocate a memory chunk of given size to a variable. A memory chunk might be composed of
+							several words.
+						</li>
+						<li>
+							<b>.global</b> :To define a function/label as global 
+						</li>
+						<li>
+							<b>.arm</b> :To specify that the following code is an arm program.
+							It has no effect on the code functionality.
+						</li>
+						<li>
+							<b>.text</b> :To specify the begining of the text section.
+						</li>
+						<li>
+							<b>.data</b> :To specify the beginning of the data section.
+						</li>
+					</ul>
+				</li>
+				<br>
+				<li>
+					Since this is a simulator form ARM, All the instructions and their format is same as defined by ARM assembly
+					language. The functionality of every instruction is in accordance with the ARM architecture. In this version,
+					following instructions are supported :
+					<br><br>
+					<table>
+						<tr>
+							<td>Load/Store :</td>
+							<td><strong>ldr, str</strong></td>
+							
+						</tr>
+						<tr>
+							<td>Branch :</td>
+							<td><strong>b, bl</strong></td>
+							
+						</tr>
+						<tr>
+							<td>Basic Instructions :</td>
+							<td>Arithmetic, Logical Comparision<br> and Data Movement instructions</td>
+							
+						</tr>
+						<tr>
+							<td>Arithmetic :</td>
+							<td><strong>add, adc, sub, sbc, rsb, rsc mul, mla</strong></td>
+						</tr>
+						<tr>
+							<td>Logical :</td>
+							<td><strong>and, eor, orr, bic</strong></td>
+						</tr>
+						<tr>
+							<td>Comparison </td>
+						<td><strong>cmp, cmn, tst, teq</strong></td>
+						</tr>
+						<tr>
+							<td>Data movement :</td>
+							<td><strong>mov, mvn, swp, clz</strong></td>
+						</tr>
+					</table><br>
+					<br>
+
+					The following Condition flags are supported :
+					<br><br>
+					<table>
+						<tr>
+							<td><strong>Flags</strong></td>
+							<td><strong>Logical Instructions</strong></td>
+							<td><strong>Arithmetic Instructions</strong></td>
+							
+						</tr>
+						<tr>
+							<td>Negative (N)</td>
+							<td>No meaning</td>
+							<td>Set if the result of the signed operation is negative</td>
+							
+						</tr>
+						<tr>
+							<td>Zero (Z)</td>
+							<td>Set if the result is all zeros</td>
+							<td>Set if the result of the operation is zero</td>
+							
+						</tr>
+						<tr>
+							<td>Carry (C)</td>
+							<td>Set if after 'shift' operation, 1 was left in the carry flag.</td>
+							<td>Set if the result was greater than 32 bits</td>
+						</tr>
+						<tr>
+							<td>NOverflow (O)</td>
+							<td>No meaning</td>
+							<td>Set if the result of the signed operation led to overflow.</td>
+						</tr>
+					</table><br>
+				
+					The instructions may have a condition field set. The following conditions are supported. <br><br>
+
+				<table>
+						<tr>
+							<td><strong>EQ</strong></td>
+							<td><strong>NE</strong></td>
+							<td><strong>HS / CS</strong></td>
+							<td><strong>LO / CC</strong></td>
+						</tr>
+						<tr>
+							<td><strong>MI</strong></td>
+							<td><strong>PL</strong></td>
+							<td><strong>VS</strong></td>
+							<td><strong>VC</strong></td>
+						</tr>
+						<tr>
+							<td><strong>HI</strong></td>
+							<td><strong>LS</strong></td>
+							<td><strong>GE</strong></td>
+							<td><strong>LT</strong></td>
+							
+						</tr>
+						<tr>
+							<td><strong>GT</strong></td>
+							<td><strong>LE</strong></td>
+							<td><strong>AL</strong></td>
+							<td><strong>NV</strong></td>
+						</tr>
+					</table>
+					<br>
+					For the basic instructions, the flag variable will be modified only when the instruction is followed by 'S' condition. <br><br>
+				--> To add comments use, @ or ;, followed by your comment.
+				<br>
+				 --> In text section, Constants must be preceded by a #. For example, to assign 10 to r1, use: mov r1, #10 (or mov r1, #0xa)
+			  </li>
+			</ol>
+
+		</p>
+	</div>
+
+	
+	<div class="bottom_menu">
+
+		<br>
+		<!--onclick=Highlight(this)/-->
+		<button id="bottom_Run" >Run Input/Output</button>
+		<button id="bottom_parser">Simulator Message</button>
+		<div class="wrapper">
+			<div style="background-color: grey">
+				<button id="bottom_clear" class="center_feild">Clear Field</button>
+			</div>
+			<div style="width:99%;height:8em;">
+				<textarea style="width: 100%;height:100%;" id="parsertext">
+
+			</textarea>
+			</div>
+		</div>
+		<br>
+	</div>
+
+</body>
+
+</html>

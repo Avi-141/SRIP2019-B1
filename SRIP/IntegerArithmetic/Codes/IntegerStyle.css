@@ -1,4 +1,4 @@
- body{         background-color:#FFFFE0;
+ body{         background-color:ghostwhite;
               margin: 0;
                user-select: none;
      -moz-user-select: none; 
@@ -46,7 +46,41 @@ tr:not(:last-child) td{
           margin-left: 30px;
           cursor: pointer;
           border: 2px solid #DC143C;
+          border-radius: 12px;}
         }
+ .button:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+.start {
+          background-color:lightgreen;
+          border: none;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 15px;
+          margin-left: 30px;
+          cursor: pointer;
+          border: 2px solid white;
+          border-radius: 12px;}
+        }
+ .start:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+
+ .switch{
+          background-color:darkorange;
+          border: none;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 15px;
+          margin-left: 30px;
+          cursor: pointer;
+          border: 2px solid white;
+          border-radius: 12px;}
+        }
+ .switch:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+
 .foo
 {
     margin-left:10px;

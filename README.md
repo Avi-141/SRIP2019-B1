@@ -31,6 +31,6 @@
 
 ### PROJECT 4 - Armi Simulator and Compiler 
 
-** Created an ARM compiler and code simulator in vanilla JS **
+**Created an ARM compiler and code simulator in vanilla JS**
 
 

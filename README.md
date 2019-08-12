@@ -14,8 +14,6 @@
 
 **Link to wiki page for a report and user documentation** [Wiki](https://github.com/Avi-141/SRIP2019-B1/wiki)
 
-<br/><br/>
-
 
 ### PROJECT 2 - Dynamic quiz using JSON and JS
 

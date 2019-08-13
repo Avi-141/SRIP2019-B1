@@ -26,7 +26,7 @@
 **WebGL has been used to make the page responsive and interactive**
 
 
-### PROJECT 4 - Armi Simulator and Compiler 
+### PROJECT 4 - Arm Simulator and Compiler 
 
 **Created an ARM compiler and code simulator in vanilla JS**
 

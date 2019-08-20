@@ -30,4 +30,10 @@
 
 **Created an ARM compiler and code simulator in vanilla JS**
 
+### PROJECT 5 - Neural Machine Translation in Javascript. 
+**Converting English like sentences to multiple languages , distinguishing Phenomes ,syllables .
+**Creating a Dictionary which fetches and maps the word to the corresponding language**
+
+
+
 
